@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch OrderOfOperators",
+            "request": "launch",
+            "mainClass": "OrderOfOperators",
+            "projectName": "java4everyone_a965b942"
+        },
+        {
+            "type": "java",
             "name": "Launch OperatorsExam",
             "request": "launch",
             "mainClass": "OperatorsExam",
