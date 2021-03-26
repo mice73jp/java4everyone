@@ -68,7 +68,7 @@ public class HelloWorld {
 변수(primitive data type)에 저장 된 실제 값을 리터럴이라고 한다.
 변수의 형태에 따른 문자나 숫자 표기를 의미하며, 정수 리터럴, 실수 리터럴, 문자 리터럴, 논리 리터럴이 있으며, 리터럴을 특정 형의 변수에 대입한다.
 
-```JAVA
+```Java
 long    big   =   3456789L;
   |      |          |
 변수형     |        정수 리터럴(long)
@@ -84,7 +84,7 @@ char    ch   =   'A';
 변수 값의 출력을 위해서 `System.out.println()`을 사용. 하지만, 이 함수는 하나의 변수만 출력 가능.
 여러개의 변수 및 다양한 변수 형의 값을 한번에 출력하기 위해서 `System.out.printf("%c %d %b", aa, bb, cc)`를 사용한다.
 
-```JAVA
+```Java
 boolean isFun = true;
 char c ='f';              // 작은따옴표를 사용해야 합니다.
 int x = 59;
@@ -131,7 +131,7 @@ System.out.printf("%b, %c, %d, %d, %f, %f\n", isFun, c, x, big, f, d);
             * 다른 연산자와 사용시 주의!
                 * 피연산자 **앞**에 증감이 있으면, **+-1씩 더한 후에 다른 연산자와 계산**
                 * 피연산자 **뒤**에 증감이 있으면, **다른 연산자와 계산 후에 +-1씩 더함**
-    * 이항 연산자
+   * 이항 연산자
         * 피연산자가 두개가 필요
         * 사칙연산 및 나머지 구하는 연산자(`+, -, *, /, %`)
             * 나누기는 기본적으로 정수만 출력
@@ -146,12 +146,77 @@ System.out.printf("%b, %c, %d, %d, %f, %f\n", isFun, c, x, big, f, d);
             * 대입 연산자의 왼쪽 피연산자가 사칙의 피연산자로도 사용되는 경우에 복합대입 연산자로 짧게 표현
                 * `a = a + 1` => `a += 1`
 
+```Java
+public class ArithmeticOperators {
+    /**
+     * 메인 함수
+     * @param args
+     *  현재는 명령어 파라매터를 무시.
+     */
+    public static void main(String[] args) {
+        System.out.println("단항 연산자");
+        int i1 = 0;
+        int i2 = 10;
+        int i3 = -20;
+
+        System.out.printf("Before : i1 = %d, i2 = %d, i3 = %d\n", i1, i2, i3);
+        System.out.printf("Ope + : i1 = %d, i2 = %d, i3 = %d\n", +i1, +i2, +i3);
+        System.out.printf("Ope - : i1 = %d, i2 = %d, i3 = %d\n", -i1, -i2, -i3);
+
+        System.out.println("증감 연산자");
+        int i10 = 0;
+        i10++;
+        System.out.println(i10);
+        ++i10;
+        System.out.println(i10);
+
+        int i20 = 10;
+        int i30 = 0;
+        System.out.printf("Before : i10 = %d, i20 = %d, i30 = %d\n", i10, i20, i30);
+        i30 = ++i10 + i20;
+        System.out.printf("In front : i10 = %d, i20 = %d, i30 = %d\n", i10, i20, i30);
+
+        i30 = 0;
+        System.out.printf("Before : i10 = %d, i20 = %d, i30 = %d\n", i10, i20, i30);
+        i30 = i10++ + i20;
+        System.out.printf("Behind : i10 = %d, i20 = %d, i30 = %d\n", i10, i20, i30);
+
+        System.out.println("산술 연산자");
+        int i = 5;
+        int j = 2;
+        System.out.printf("i + j = %d\n", i + j);
+        System.out.printf("i - j = %d\n",i - j);
+        System.out.printf("i * j = %d\n",i * j);
+        System.out.printf("i / j = %d\n",i / j);
+        System.out.printf("i / j = %f\n",i / (double)j);
+        System.out.printf("i %% j = %d\n",i % j);
+    }
+}
+```
+
 ### 비교 연산자
 `같다, 다르다, 크다, 작다, 크거나 같다, 작거나 같다`라는 의미룰 표현하는 연산자
 * 비교 연산자
     * `==, !=, >, <, >=, <=`
     * 시행결과는 boolean값인 true / false 중에 하나
     * 주의 `=`는 대입 연산자
+
+```Java
+public class ComparableOperators {
+    public static void main(String[] args) {
+        int i = 10;
+        int j = 10;
+
+        System.out.printf("i == j => %b\n", i == j);
+        System.out.printf("i != j => %b\n", i != j);
+        System.out.printf("i > j => %b\n", i > j);
+        System.out.printf("i < j => %b\n", i < j);
+        System.out.printf("i >= j => %b\n", i >= j);
+        System.out.printf("i <= j => %b\n", i <= j);
+    }
+}
+```
+
 * 난수 발생
     * `Math.random()`은 0 ~ 1 사이의 무작위 double형 반환
         * 반환값에 대해 적당한 수를 곱하고 필요한 실수로 변환
@@ -168,3 +233,52 @@ System.out.println((int)Math.random()*10);
 ```
 
 ### 연산자 우선순위
+* 왼쪽에서 오른쪽으로 갈수록 우선순위가 낮음
+* 위에서 아래로 내려갈수 록 우선순위가 낮음
+    * 괄호가 최상위이나, 괄호가 없을 경우는 우선선위에 따라 계산됨
+    * 바른 계산 순서를 위해서 **반드시** 괄호`(..)`로 우선순위를 지정하는 것이 필요
+
+|----|----|----|
+|0|최우선 연산자|. [] ()|
+|1|단항 연산자|++ -- ! ~ +/- : 부정, bit 변환 > 부호 > 증감|
+|2|산술 연산자|* / % + -|
+|3|시프트 연산자|>> << >>>|
+|4|비교 연산자|> < >= <= == !=|
+|5|비트 연산자|& | ^ ~|
+|6|논리 연산자|&& || 5|
+|7|삼항 연산자|조건식 ?|
+|8|대입 연산자|= *= /= %= += -=|
+
+```Java
+public class OrderOfOperators {
+    public static void main(String[] args) {
+        int a = 5;
+        int b = 10;
+        int c = 15;
+
+        System.out.println("a - b * c => " + ( a - b * c) );
+        System.out.println("(a - b) * c => " + ( (a - b) * c) );
+        System.out.println("a > 5 && b > 5 => " + (a > 5 && b > 5));    // false && true -> false
+        System.out.println("a > 5 || b > 5 => " + (a > 5 || b > 5));    // false || true -> true
+
+        /*
+        System.out.println(++a - 5)의 연산 순서
+        1 | ++a 수행 → 5 + 1 → a는 6
+        2 | a - 5 수행 → 6 - 5 → 결과는 1
+        3 | System.out.pinrlnt()에 2의 값(1)을 전달
+
+        System.out.println(a++ - 5)의 연산 순서
+        1 | a - 5 수행 → 5 - 5 → 결과는 0
+        2 | System.out.pinrlnt()에 1의 값(0)을 전달
+        3 | a++ 수행 → 5 + 1 → a는 6
+        */
+        a = 5;
+        System.out.println("++a - 5 => " + (++a - 5));  // a = a + 1 -> a - 5 -> 1  Print : 1
+        System.out.println(a);
+
+        a = 5;
+        System.out.println("a++ - 5 => " + (a++ - 5)); // a - 5 -> 0 -> a = a + 1   Print : 0
+        System.out.println(a);
+    }
+}
+```
