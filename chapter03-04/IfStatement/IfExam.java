@@ -1,4 +1,4 @@
-public class IfExam01 {
+public class IfExam {
 
     public int IfTest(int value) {
         int ret = 0;
@@ -18,7 +18,7 @@ public class IfExam01 {
             System.out.println(value + "는(은) 3의 배수입니다.");
         }
 
-        System.out.println(new IfExam01().IfTest(6));
-        System.out.println(new IfExam01().IfTest(8));
+        System.out.println(new IfExam().IfTest(6));
+        System.out.println(new IfExam().IfTest(8));
     }
 }
