@@ -276,6 +276,7 @@ public class DoWhileStatement {
         * 이미 정의되어 있으므로 간단하게 **대입연산자**만으로 
         * `int a = 10;`
     * object type
+        * 참조형
         * 반드시 **new** 연산자를 사용
         * `cooker b = new cooker();`
 
@@ -331,3 +332,92 @@ public class ForStatement {
     * 즉시 이동하기에 continue문 이후의 실행문을 실행되지 못함
     * 조건식 변수의 변화전에 사용되면 무한 루프가 될 위험성이 있음
         * 가능하면 조건식 변수의 변화후에 사용하는 것을 추천
+
+## 배열(arrary)
+* 데이터 형이 같은 변수가 여러개 필요 할 경우
+    * 필요한 갯수만큼의 변수를 선언
+        * 변수 이름을 정하는 것이 어려움
+        * 사용 및 값의 지정(관리)가 매우 불편함
+    * 배열을 선언해서 사용
+        * 참조형이므로 반드시 `new`를 사용함
+        * `int[] testArray2 = new int[4];`
+        * `int[] testArray1 = new int[]{1, 2, 3, 4};`
+        * `int[] testArray2 = {1, 2, 3, 4};`
+* 배열의 특징
+    * 배열명으로 배열의 쓰임새를 알 수 있게 지정하는 것이 편리
+    * 배열 선언 후에 **크기는 변하지 않음!!!**
+    * 배열명과 인덱스로 복수개의 변수명을 대체
+        * 변수는 하나이지만, 값을 여러개가 들어감
+        * 인덱스 번호로 이름표를 대신
+            * 인덱스의 시작은 항상 `0`
+            * 인덱스의 끝은 `길이 - 1`
+        * 인덱스를 지정하여 배열의 각각의 공간에 값을 지정하거나 읽을 수 있음
+            * `array[0] = 1;`
+            * `int value = array[3];`
+    * 인덱스의 관리가 버그의 원인이 되기도 함
+* 배열의 선언과 동시에 초기값이 설정됨
+    * 정수 - 0
+    * 실수 - 0.0
+    * 문자 - ''
+    * 단, 일반적인 변수 타입의 선언에서는 **초기값 설정이 없음!!**
+
+```Java
+public class OneDemenArray {
+    public static void main(String[] args) {
+        int[] array1 = new int[5];
+        int[] array2 = new int[]{1, 2, 3, 4, 5};
+        int[] array3 = {6, 7, 8, 9, 10};
+
+        array1[0] = 11;
+        array1[2] = 12;
+        array1[4] = 13;
+
+        for( int idx = 1; idx < array1.length; idx++ ) {
+            System.out.println("idx : " + idx + " value : " + array1[idx]);
+        }
+
+        System.out.println("array2[2] : " + array2[2]);
+        System.out.println("array3[array3.length-1] : " + array3[array3.length-1]);
+    }
+}
+```
+
+* 배열의 초기화
+    * 배열의 각 저장공간에 값을 넣는 것
+    * 배열명과 인덱스를 사용하여 하나씩 넣는 방법
+        * 설정 값에 규칙성이 없는 경우
+    * 배열에 대해서 `for`문으로 넣는 방법
+        * 설정 값에 규칙성이 있는 경우
+        * 다른 배열을 사용하여 값을 설정 할 경우
+        * 배열명.length -> 배열의 길이
+            * `array.length`
+            * 직접 길이값을 지정하는 것보다 안전
+
+* 변수의 스코프(scope)
+    * 선언된 변수가 사용되는 범위를 의미
+    * 대괄호 `{ }`로 변수의 범위가 지정됨!!
+    * `for() {}`문의 시장에서 선언된 변수는 `{}`을 벗어나는 순간에 사라 짐
+        * `for() {}`의 실행후에도 사용할 변수는 `for() {}`의 **시작전**에 선언이 필요!!
+        * `for() {}`에서 선언된 변수는 `for() {}`를 벗어나서 다시 선언 가능해짐
+            * 왜?? `{}`을 벗어나는 순간에 사라지기 때문에...
+        * `break / continue`도 같은 제한
+            * 스코프 벗어나기 -> break
+            * 스코프의 처음으로 이동하기 -> continue
+
+```Java
+public class ArrayWithFor {
+    public static void main(String[] args) {
+        int[] iarray = new int[100];
+        for( int i = 0; i < iarray.length; i++ ) {
+            iarray[i] = i + 1;
+        }
+
+        int sum = 0;
+        for(int i = 0; i < iarray.length; i++ ) {
+            sum += iarray[i];
+        }
+
+        System.out.println("sum :" + sum);
+    }
+}
+```
